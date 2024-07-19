@@ -1,0 +1,47 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script>
+            emailjs.init("S3wJElC1Pdii1B-bg");
+    
+            function sendEmail(event) {
+                event.preventDefault(); // Prevent form from submitting the default way
+    
+                var templateParams = {
+                    email: document.getElementById('email').value
+                };
+    
+                emailjs.send('service_n1v865e', 'template_l6z7kks', templateParams)
+                    .then(function(response) {
+                        console.log('Sent successfully:', response);
+                        alert('Thank you for signing up! Check your email for more details.');
+                    }, function(error) {
+                        console.error('Error:', error);
+                        alert('Failed to send email. Please try again later.');
+                    });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="offer container-fluid my-5 py-5 text-center position-relative overlay-top overlay-bottom">
+            <div class="container py-5">
+                <h1 class="display-3 text-primary mt-3">50% OFF</h1>
+                <h1 class="text-white mb-3">Sunday Special Offer</h1>
+                <h4 class="text-white font-weight-normal mb-4 pb-3">Only for Sunday from 1st Jan to 30th Jan 2025</h4>
+                <form class="form-inline justify-content-center mb-4" onsubmit="sendEmail(event)">
+                    <div class="input-group">
+                        <input type="text" id="email" class="form-control p-4" placeholder="Your Email" style="height: 60px;" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary font-weight-bold px-4" type="submit">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>
